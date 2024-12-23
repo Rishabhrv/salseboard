@@ -1,0 +1,196 @@
+               <div class="from-field" >
+                    <div class="inline-fields">
+                        <?php
+                        // Cast variables to numeric
+                        $payment = (float)$payment;
+                        $first_installment = (float)$first_installment;
+                        $second_installment = (float)$second_installment ;
+                        $third_installment = (float)$third_installment ;
+                        $fourth_installment =(float)$fourth_installment ;
+                
+                        // Check conditions for second installment
+                        if ($payment > $first_installment) {
+                            print "
+                            <div class='field'>
+                                <label for='second_installment'>Second Installment</label>
+                                <input type='text' id='second_installment' name='second_installment' value='" . htmlspecialchars($second_installment) . "' >
+                            </div>
+                                           
+                            <div class='field'>
+                        <label for='second_paymentd'>Date </label>
+                            <input type='date' id='second_paymentd' name='second_paymentd' value='<?php print $second_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                
+                        // Check conditions for final installment
+                        if ($payment > ($first_installment + $second_installment) && $second_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='third_installment'>Third Installment</label>
+                                <input type='text' id='third_installment' name='third_installment' value='" . htmlspecialchars($third_installment) . "' >
+                            </div>
+                            
+                            <div class='field'>
+                        <label for='third_paymentd'>Date </label>
+                            <input type='date' id='third_paymentd' name='third_paymentd' value='<?php print $third_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                        if ($payment > ($first_installment +$second_installment+ $third_installment) && $third_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='fourth_installment'>Fourth Installment</label>
+                                <input type='text' id='fourth_installment' name='fourth_installment' value='" . htmlspecialchars($fourth_installment) . "' >
+                            </div>
+                                            <div class='field'>
+                        <label for='fourth_paymentd'>Date </label>
+                            <input type='date' id='fourth_paymentd' name='fourth_paymentd' value='<?php print $fourth_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="from-field" >
+                    <div class="inline-fields">
+                        <?php
+                        // Cast variables to numeric
+                        $payment = (float)$payment;
+                        $first_installment = (float)$first_installment;
+                        $second_installment = (float)$second_installment ;
+                        $third_installment = (float)$third_installment ;
+                        $fourth_installment =(float)$fourth_installment ;
+                        $fifth_installment =(float)$fifth_installment ;
+                        $sixth_installment =(float)$sixth_installment ;
+                        $seventh_installment =(float)$seventh_installment ;
+
+                
+                        // Check conditions for second installment
+                        if ($payment > ($first_installment +$second_installment+ $third_installment + $fourth_installment) && $fourth_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='fifth_installment'>Fifth Installment</label>
+                                <input type='text' id='fifth_installment' name='fifth_installment' value='" . htmlspecialchars($fifth_installment) . "' >
+                            </div>
+                                                 <div class='field'>
+                        <label for='fifth_paymentd'>Date </label>
+                            <input type='date' id='fifth_paymentd' name='fifth_paymentd' value='<?php print $fifth_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                
+                        // Check conditions for final installment
+                        if ($payment > ($first_installment +$second_installment+ $third_installment + $fourth_installment + $fifth_installment) && $fifth_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='sixth_installment'>Sixth Installment</label>
+                                <input type='text' id='sixth_installment' name='sixth_installment' value='" . htmlspecialchars($sixth_installment) . "' >
+                            </div>
+                                                 <div class='field'>
+                        <label for='sixth_paymentd'>Date </label>
+                            <input type='date' id='sixth_paymentd' name='sixth_paymentd' value='<?php print $sixth_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                        if ($payment > ($first_installment +$second_installment+ $third_installment + $fourth_installment + $fifth_installment +$sixth_installment) && $sixth_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='seventh_installment'>Seventh Installment</label>
+                                <input type='text' id='seventh_installment' name='seventh_installment' value='" . htmlspecialchars($seventh_installment) . "' >
+                            </div>
+                                                  <div class='field'>
+                        <label for='seventh_paymentd'>Date </label>
+                            <input type='date' id='seventh_paymentd' name='seventh_paymentd' value='<?php print $seventh_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="from-field" >
+                    <div class="inline-fields">
+                        <?php
+                        // Cast variables to numeric
+                        $payment = (float)$payment;
+                        $first_installment = (float)$first_installment;
+                        $second_installment = (float)$second_installment ;
+                        $third_installment = (float)$third_installment ;
+                        $fourth_installment =(float)$fourth_installment ;
+                        $fifth_installment =(float)$fifth_installment ;
+                        $sixth_installment =(float)$sixth_installment ;
+                        $seventh_installment =(float)$seventh_installment ;
+                        $eight_installment =(float)$eight_installment ;
+                        $ninth_installment =(float)$ninth_installment ;
+                        $final_installment =(float)$final_installment ;
+
+                
+                        // Check conditions for second installment
+                        if ($payment > ($first_installment +$second_installment+ $third_installment + $fourth_installment + $fifth_installment + $sixth_installment + $seventh_installment) && $seventh_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='eight_installment'>Eigth Installment</label>
+                                <input type='text' id='eight_installment' name='eight_installment' value='" . htmlspecialchars($eight_installment) . "' >
+                            </div>
+                           <div class='field'>
+                        <label for='eight_paymentd'>Date </label>
+                            <input type='date' id='eight_paymentd' name='eight_paymentd' value='<?php print $eight_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                
+                        // Check conditions for final installment
+                        if ($payment > ($first_installment +$second_installment+ $third_installment + $fourth_installment + $fifth_installment + $sixth_installment + $seventh_installment + $eight_installment) && $eight_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='ninth_installment'>Nine Installment</label>
+                                <input type='text' id='ninth_installment' name='ninth_installment' value='" . htmlspecialchars($ninth_installment) . "' >
+                            </div>
+                                                <div class='field'>
+                        <label for='ninth_paymentd'>Date </label>
+                            <input type='date' id='ninth_paymentd' name='ninth_paymentd' value='<?php print $ninth_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                        if ($payment > ($first_installment +$second_installment+ $third_installment + $fourth_installment + $fifth_installment + $sixth_installment + $seventh_installment + $eight_installment + $ninth_installment) && $ninth_installment!=0) {
+                            print "
+                            <div class='field'>
+                                <label for='final_installment'>Ten Installment</label>
+                                <input type='text' id='final_installment' name='final_installment' value='" . htmlspecialchars($final_installment) . "' >
+                            </div>
+                                                  <div class='field'>
+                        <label for='final_paymentd'>Date </label>
+                            <input type='date' id='final_paymentd' name='final_paymentd' value='<?php print $final_paymentd ?>' >
+
+                          
+
+                        </div>
+                            ";
+                        }
+                        ?>
+                    </div>
+                </div> 
