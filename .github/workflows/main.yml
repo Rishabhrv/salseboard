@@ -1,0 +1,38 @@
+name: Deploy SalesBoard Website to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no rishabhvyas@178.16.137.226 << 'EOF'
+          # Navigate to the project directory
+          cd /home/rishabhvyas/salseboard
+          
+          # Pull the latest changes from the repository
+          git fetch origin main
+          git reset --hard origin/main  # Ensure server matches GitHub repo
+          git clean -fd                # Remove untracked files/folders
+
+          # Set the correct file permissions
+          sudo chown -R www-data:www-data /home/rishabhvyas/salseboard
+          sudo chmod -R 755 /home/rishabhvyas/salseboard
+
+          # Reload Nginx to apply changes
+          sudo systemctl reload nginx
+          EOF
