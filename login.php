@@ -1,4 +1,4 @@
-<?php include_once("db.php");
+<?php include "db.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
          $email = $_SESSION['email'];
          print "
          <script language='javascript'>
-           window.location = 'customer.php';
+           window.location = 'index.php';
          </script>";
   
   }

@@ -1,7 +1,16 @@
+// JavaScript to ensure elements are displayed properly when "Other" is selected
+window.onload = function() {
+    // For "Enquiry" field
+   
+}
 
     // Open the modal
     function openModal() {
-        document.getElementById("newLeadModal").style.display = "block";
+       
+
+        // Use AJAX to load content from addclient.php into the modal
+    
+        
     }
 
     // Close the modal
@@ -14,6 +23,7 @@
         if (event.target == document.getElementById("newLeadModal")) {
             closeModal();
         }
-    };
+    }
 
   
+

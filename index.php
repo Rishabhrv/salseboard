@@ -378,7 +378,7 @@ $qb=mysqli_query($con,"INSERT INTO customer_detail (customer_name,email,number,e
 		    	$errormsg= "
 
                   <script language='javascript'>
-                        window.location = 'customer.php';
+                        window.location = 'index.php';
                     </script>
  "; //printing error if found in validation
 
@@ -573,7 +573,7 @@ while ($ro = mysqli_fetch_array($r123)) {
 
 
     <div class="customer_button1">
-      <button class="button-86" onclick="openModal()"> +</button>
+      <button class="button-86" ><a href="addclient.php" style="text-decoration:none;color:white;">+</a></button>
     </div>
 
 
@@ -594,81 +594,6 @@ while ($ro = mysqli_fetch_array($r123)) {
 
 <!----------------------------------------------ADD CLIENT FROM------------------------------------------------------->
 
-    <div id="newLeadModal" class="modal" >
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Create New Lead</h2>
-            <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-						{
-						print $errormsg;
-						}
-   ?>
-            <form  action="" method="post" enctype="multipart/form-data" >
-    <div class="from-field">
-        <div class="inline-fields">
-            <div class="field">
-                <label for="customer_name">Client Name:</label>
-                <input type="text" id="customer_name" name="customer_name" required>
-            </div>
-            <div class="field">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-        </div>
-    </div>
-    
-    <div class="from-field">
-    <div class="inline-fields">
-        <div class="field">
-            <label for="number">Phone Number:</label>
-            <input type="text" id="number" name="number" required>
-        </div>
-        <div class="field">
-                <label for="enquiry_date">Enquiry Date</label>
-                <input type="date" id="enquiry_date" name="enquiry_date" required>
-            </div>
-    </div>
-    </div>
-    <div class="from-field">
-        <div class="inline-fields">
-            
-            <div class="field">
-            <label for="enquiry">Enquiry</label>
-        <select id="enquiry" name="enquiry" required >
-            <option value="Book">Book</option>
-            <option value="Book Chapter">Book Chapter</option>
-            <option value="Edit Book">Edit Book</option>
-        </select>
-            </div>
-
-            <div class="field">
-                <label for="source">Lead:</label>
-                <select id="source" name="source" required >
-                    <option value="Google">Google</option>                   
-                    <option value="Justdail">Justdail</option>
-                    <option value="Indaimart">Indaimart</option>
-                    <option value="Website">Website</option>
-                    <option value="Refernece">Refernece</option>
-                    <option value="Ads">Ads</option>
-
-                </select>            
-              </div>
-        </div>
-    </div>
-
- 
-    
-  
-
-  
-    
-    <div>
-        <button type="submit" name="save">Submit</button>
-    </div>
-</form>
-        </div>
-    </div>
 
 
     <!----------------------------------------------------ADD CLIENT FROM END---------------------------------------->
@@ -754,14 +679,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <table class="table">
     <thead>
   <tr style="color:rgb(51,107,193);">
-    <th><span class='label-text'><b>Enquiry Date </b></span><i class="fa-solid fa-up-down" onclick="sortTable(0, 'tasks-all')"></i></th>
-    <th><span class='label-text'><b>Name </b></span><i class="fa-solid fa-up-down" onclick="sortTable(1, 'tasks-all')"></i></th>
-    <th><span class='label-text'><b>Source </b></span><i class="fa-solid fa-up-down" onclick="sortTable(2, 'tasks-all')"></i></th>
-    <th><span class='label-text'><b>Number </b></span><i class="fa-solid fa-up-down" onclick="sortTable(3, 'tasks-all')"></i></th>
-    <th><span class='label-text'><b>Enquiry </b></span><i class="fa-solid fa-up-down" onclick="sortTable(4, 'tasks-all')"></i></th>
-    <th><span class='label-text'><b>Last FollowUp </b></span><i class="fa-solid fa-up-down" onclick="sortTable(5, 'tasks-all')"></i></th>
-    <th><span class='label-text'><b>Next FollowUp</b></span><i class="fa-solid fa-up-down" onclick="sortTable(6, 'tasks-all')"></i></th>
-    <th><span class='label-text'><b>Status </b></span><i class="fa-solid fa-up-down" onclick="sortTable(7, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(0, 'tasks-all')"><b>Enquiry Date </b></span><i  onclick="sortTable(0, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(1, 'tasks-all')"><b>Name </b></span><i  onclick="sortTable(1, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(2, 'tasks-all')"><b>Source </b></span><i  onclick="sortTable(2, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(3, 'tasks-all')"><b>Number </b></span><i  onclick="sortTable(3, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(4, 'tasks-all')"><b>Enquiry </b></span><i  onclick="sortTable(4, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(5, 'tasks-all')"><b>Last FollowUp </b></span><i  onclick="sortTable(5, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(6, 'tasks-all')"><b>Next FollowUp</b></span><i  onclick="sortTable(6, 'tasks-all')"></i></th>
+    <th><span class='label-text' onclick="sortTable(7, 'tasks-all')"><b>Status </b></span><i  onclick="sortTable(7, 'tasks-all')"></i></th>
     <th></th>
   </tr>
 </thead>
@@ -897,12 +822,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
      
         <thead>
   <tr style="color:rgb(51,107,193);">
-  <th><span class='label-text'><b>Enquiry Date </b></span><i class="fa-solid fa-up-down" onclick="sortTable(0, 'tasks-new')"></i></th>
-    <th><span class='label-text'><b>Name </b></span><i class="fa-solid fa-up-down" onclick="sortTable(1, 'tasks-new')"></i></th>
-    <th><span class='label-text'><b>Source </b></span><i class="fa-solid fa-up-down" onclick="sortTable(2, 'tasks-new')"></i></th>
-    <th><span class='label-text'><b>Number </b></span><i class="fa-solid fa-up-down" onclick="sortTable(3, 'tasks-new')"></i></th>
-    <th><span class='label-text'><b>Enquiry </b></span><i class="fa-solid fa-up-down" onclick="sortTable(4, 'tasks-new')"></i></th>
-    <th><span class='label-text'><b>Status </b></span><i class="fa-solid fa-up-down" onclick="sortTable(5, 'tasks-new')"></i></th>
+  <th><span class='label-text' onclick="sortTable(0, 'tasks-new')"><b>Enquiry Date </b></span><i onclick="sortTable(0, 'tasks-new')"></i></th>
+    <th><span class='label-text' onclick="sortTable(1, 'tasks-new')"><b>Name </b></span><i onclick="sortTable(1, 'tasks-new')"></i></th>
+    <th><span class='label-text' onclick="sortTable(2, 'tasks-new')"><b>Source </b></span><i onclick="sortTable(2, 'tasks-new')"></i></th>
+    <th><span class='label-text' onclick="sortTable(3, 'tasks-new')"><b>Number </b></span><i onclick="sortTable(3, 'tasks-new')"></i></th>
+    <th><span class='label-text' onclick="sortTable(4, 'tasks-new')"><b>Enquiry </b></span><i onclick="sortTable(4, 'tasks-new')"></i></th>
+    <th><span class='label-text' onclick="sortTable(5, 'tasks-new')"><b>Status </b></span><i onclick="sortTable(5, 'tasks-new')"></i></th>
     <th></th>
   </tr>
 </thead>
@@ -967,14 +892,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     
     <thead>
                 <tr style="color:rgb(51,107,193);">
-                    <th><span class='label-text'><b>Enquiry Date </b></span><i class="fa-solid fa-up-down" onclick="sortTable(0, 'tasks-on-hold')"></i></th>
-                    <th><span class='label-text'><b>Name </b></span><i class="fa-solid fa-up-down" onclick="sortTable(1, 'tasks-on-hold')"></i></th>
-                    <th><span class='label-text'><b>Source </b></span><i class="fa-solid fa-up-down" onclick="sortTable(2, 'tasks-on-hold')"></i></th>
-                    <th><span class='label-text'><b>Number </b></span><i class="fa-solid fa-up-down" onclick="sortTable(3, 'tasks-on-hold')"></i></th>
-                    <th><span class='label-text'><b>Enquiry </b></span><i class="fa-solid fa-up-down" onclick="sortTable(4, 'tasks-on-hold')"></i></th>
-                    <th><span class='label-text'><b>Last FollowUp </b></span><i class="fa-solid fa-up-down" onclick="sortTable(5, 'tasks-on-hold')"></i></th>
-                    <th><span class='label-text'><b>Next FollowUp </b></span><i class="fa-solid fa-up-down" onclick="sortTable(6, 'tasks-on-hold')"></i></th>
-                    <th><span class='label-text'><b>Status </b></span><i class="fa-solid fa-up-down" onclick="sortTable(7, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(0, 'tasks-on-hold')" ><b>Enquiry Date </b></span><i onclick="sortTable(0, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(1, 'tasks-on-hold')"><b>Name </b></span><i onclick="sortTable(1, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(2, 'tasks-on-hold')"><b>Source </b></span><i onclick="sortTable(2, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(3, 'tasks-on-hold')"><b>Number </b></span><i onclick="sortTable(3, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(4, 'tasks-on-hold')"><b>Enquiry </b></span><i onclick="sortTable(4, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(5, 'tasks-on-hold')"><b>Last FollowUp </b></span><i onclick="sortTable(5, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(6, 'tasks-on-hold')"><b>Next FollowUp </b></span><i onclick="sortTable(6, 'tasks-on-hold')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(7, 'tasks-on-hold')"><b>Status </b></span><i onclick="sortTable(7, 'tasks-on-hold')"></i></th>
                     <th></th>
                 </tr>
             </thead>
@@ -1064,14 +989,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
              
     <thead>
     <tr style="color:rgb(51,107,193);">
-        <th><span class='label-text'><b>Enquiry Date </b></span><i class="fa-solid fa-up-down" onclick="sortTable(0, 'tasks-approved')"></i></th> <!-- Sorting Enquiry Date -->
-        <th><span class='label-text'><b>Name </b></span><i class="fa-solid fa-up-down" onclick="sortTable(1, 'tasks-approved')"></i></th> <!-- Sorting Name -->
-        <th><span class='label-text'><b>Source </b></span><i class="fa-solid fa-up-down" onclick="sortTable(2, 'tasks-approved')"></i></th> <!-- Sorting Source -->
-        <th><span class='label-text'><b>Number </b></span><i class="fa-solid fa-up-down" onclick="sortTable(3, 'tasks-approved')"></i></th> <!-- Sorting Number -->
-        <th><span class='label-text'><b>Enquiry </b></span><i class="fa-solid fa-up-down" onclick="sortTable(4, 'tasks-approved')"></i></th> <!-- Sorting Enquiry -->
-        <th><span class='label-text'><b>Remaining Payment </b></span><i class="fa-solid fa-up-down" onclick="sortTable(5, 'tasks-approved')"></i></th> <!-- Sorting Remaining Payment -->
-        <th><span class='label-text'><b>Assign To </b></span><i class="fa-solid fa-up-down" onclick="sortTable(6, 'tasks-approved')"></i></th> <!-- Sorting Assign To -->
-        <th><span class='label-text'><b>Status </b></span><i class="fa-solid fa-up-down" onclick="sortTable(7, 'tasks-approved')"></i></th> <!-- Sorting Status -->
+        <th><span class='label-text' onclick="sortTable(0, 'tasks-approved')"><b>Enquiry Date </b></span><i  onclick="sortTable(0, 'tasks-approved')"></i></th> <!-- Sorting Enquiry Date -->
+        <th><span class='label-text' onclick="sortTable(1, 'tasks-approved')"><b>Name </b></span><i  onclick="sortTable(1, 'tasks-approved')"></i></th> <!-- Sorting Name -->
+        <th><span class='label-text' onclick="sortTable(2, 'tasks-approved')"><b>Source </b></span><i  onclick="sortTable(2, 'tasks-approved')"></i></th> <!-- Sorting Source -->
+        <th><span class='label-text' onclick="sortTable(3, 'tasks-approved')"><b>Number </b></span><i  onclick="sortTable(3, 'tasks-approved')"></i></th> <!-- Sorting Number -->
+        <th><span class='label-text' onclick="sortTable(4, 'tasks-approved')"><b>Enquiry </b></span><i  onclick="sortTable(4, 'tasks-approved')"></i></th> <!-- Sorting Enquiry -->
+        <th><span class='label-text' onclick="sortTable(5, 'tasks-approved')"><b>Remaining Payment </b></span><i  onclick="sortTable(5, 'tasks-approved')"></i></th> <!-- Sorting Remaining Payment -->
+        <th><span class='label-text' onclick="sortTable(6, 'tasks-approved')"><b>Assign To </b></span><i  onclick="sortTable(6, 'tasks-approved')"></i></th> <!-- Sorting Assign To -->
+        <th><span class='label-text' onclick="sortTable(7, 'tasks-approved')"><b>Status </b></span><i  onclick="sortTable(7, 'tasks-approved')"></i></th> <!-- Sorting Status -->
         <th></th>
     </tr>
 </thead>
@@ -1186,12 +1111,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     
     <thead>
     <tr style="color:rgb(51,107,193);">
-        <th><span class='label-text'><b>Enquiry Date </b></span><i class="fa-solid fa-up-down" onclick="sortTable(0, 'tasks-rejected')"></i></th>
-        <th><span class='label-text'><b>Name </b></span><i class="fa-solid fa-up-down" onclick="sortTable(1, 'tasks-rejected')"></i></th>
-        <th><span class='label-text'><b>Source </b></span><i class="fa-solid fa-up-down" onclick="sortTable(2, 'tasks-rejected')"></i></th>
-        <th><span class='label-text'><b>Number </b></span><i class="fa-solid fa-up-down" onclick="sortTable(3, 'tasks-rejected')"></i></th>
-        <th><span class='label-text'><b>Enquiry </b></span><i class="fa-solid fa-up-down" onclick="sortTable(4, 'tasks-rejected')"></i></th>
-       <th><span class='label-text'><b>Status </b></span><i class="fa-solid fa-up-down" onclick="sortTable(7, 'tasks-rejected')"></i></th>
+        <th><span class='label-text'  onclick="sortTable(0, 'tasks-rejected')"><b>Enquiry Date </b></span><i  onclick="sortTable(0, 'tasks-rejected')"></i></th>
+        <th><span class='label-text'  onclick="sortTable(1, 'tasks-rejected')"><b>Name </b></span><i  onclick="sortTable(1, 'tasks-rejected')"></i></th>
+        <th><span class='label-text'  onclick="sortTable(2, 'tasks-rejected')"><b>Source </b></span><i  onclick="sortTable(2, 'tasks-rejected')"></i></th>
+        <th><span class='label-text'  onclick="sortTable(3, 'tasks-rejected')"><b>Number </b></span><i  onclick="sortTable(3, 'tasks-rejected')"></i></th>
+        <th><span class='label-text'  onclick="sortTable(4, 'tasks-rejected')"><b>Enquiry </b></span><i  onclick="sortTable(4, 'tasks-rejected')"></i></th>
+       <th><span class='label-text'  onclick="sortTable(5, 'tasks-rejected')"><b>Status </b></span><i  onclick="sortTable(7, 'tasks-rejected')"></i></th>
         <th></th>
     </tr>
 </thead>
@@ -1261,14 +1186,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                        
     <thead>
                 <tr style="color:rgb(51,107,193);">
-                    <th><span class='label-text'><b>Enquiry Date </b></span><i class="fa-solid fa-up-down" onclick="sortTable(0, 'tasks-followup')"></i></th>
-                    <th><span class='label-text'><b>Name </b></span><i class="fa-solid fa-up-down" onclick="sortTable(1, 'tasks-followup')"></i></th>
-                    <th><span class='label-text'><b>Source </b></span><i class="fa-solid fa-up-down" onclick="sortTable(2, 'tasks-followup')"></i></th>
-                    <th><span class='label-text'><b>Number </b></span><i class="fa-solid fa-up-down" onclick="sortTable(3, 'tasks-followup')"></i></th>
-                    <th><span class='label-text'><b>Enquiry </b></span><i class="fa-solid fa-up-down" onclick="sortTable(4, 'tasks-followup')"></i></th>
-                    <th><span class='label-text'><b>Last FollowUp </b></span><i class="fa-solid fa-up-down" onclick="sortTable(5, 'tasks-followup')"></i></th>
-                    <th><span class='label-text'><b>Next FollowUp </b></span><i class="fa-solid fa-up-down" onclick="sortTable(6, 'tasks-followup')"></i></th>
-                    <th><span class='label-text'><b>Status </b></span><i class="fa-solid fa-up-down" onclick="sortTable(7, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(0, 'tasks-followup')"><b>Enquiry Date </b></span><i  onclick="sortTable(0, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(1, 'tasks-followup')"><b>Name </b></span><i  onclick="sortTable(1, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(2, 'tasks-followup')"><b>Source </b></span><i  onclick="sortTable(2, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(3, 'tasks-followup')"><b>Number </b></span><i  onclick="sortTable(3, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(4, 'tasks-followup')"><b>Enquiry </b></span><i  onclick="sortTable(4, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(5, 'tasks-followup')"><b>Last FollowUp </b></span><i  onclick="sortTable(5, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(6, 'tasks-followup')"><b>Next FollowUp </b></span><i  onclick="sortTable(6, 'tasks-followup')"></i></th>
+                    <th><span class='label-text' onclick="sortTable(7, 'tasks-followup')"><b>Status </b></span><i  onclick="sortTable(7, 'tasks-followup')"></i></th>
                     <th></th>
                 </tr>
             </thead>
@@ -1376,10 +1301,91 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
 <!----------------------------------------------------TODAY APPOINTMENT END ------------------------------------------------>
+<div id="newLeadModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Create New Lead</h2>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            print $errormsg;
+        }
+        ?>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="from-field">
+                <div class="inline-fields">
+                    <div class="field">
+                        <label for="customer_name">Client Name:</label>
+                        <input type="text" id="customer_name" name="customer_name" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+            </div>
 
+            <div class="from-field">
+                <div class="inline-fields">
+                    <div class="field">
+                        <label for="number">Phone Number:</label>
+                        <input type="text" id="number" name="number" required>
+                    </div>
+                    <div class="field">
+                        <label for="enquiry_date">Enquiry Date</label>
+                        <input type="date" id="enquiry_date" name="enquiry_date" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-field">
+                <div class="inline-fields">
+                    <div class="field">
+                        <label for="enquiry">Enquiry</label>
+                        <select id="enquiry" name="enquiry" required>
+                            <option value="Book">Book</option>
+                            <option value="Book Chapter">Book Chapter</option>
+                            <option value="Edit Book">Edit Book</option>
+                            <option value="Other">Other</option> <!-- "Other" option added -->
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="source">Lead Source:</label>
+                        <select id="source" name="source" required>
+                            <option value="Google">Google</option>
+                            <option value="Justdail">Justdail</option>
+                            <option value="Indiamart">Indiamart</option>
+                            <option value="Website">Website</option>
+                            <option value="Reference">Reference</option>
+                            <option value="Ads">Ads</option>
+                            <option value="Other">Other</option> <!-- "Other" option added -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Field for "Other" options to appear -->
+            <div class="field" id="otherEnquiryField" style="display:none;">
+                <label for="other_enquiry">Please specify:</label>
+                <input type="text" id="other_enquiry" name="other_enquiry">
+            </div>
+
+            <div class="field" id="otherSourceField" style="display:none;">
+                <label for="other_source">Please specify:</label>
+                <input type="text" id="other_source" name="other_source">
+            </div>
+
+            <div>
+                <button type="submit" name="save">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
 <?php include "include/leftsider.php" ?>
 
 </div>
+
+
 <script>
 
   // Function to toggle the visibility of the filter options
@@ -1466,8 +1472,8 @@ function toggleFilterOptions() {
     window.location.href = window.location.pathname + queryString;
 }
 </script>
-
 <script src="assest/js/addclient.js"></script>
+
 <script src="assest/js/datatable.js"></script>
 <script src="assest/js/editandviewclient.js"></script>
 

@@ -323,6 +323,8 @@ while($row = mysqli_fetch_array($result))
     $enquiry_date="$row[enquiry_date]";
     $source="$row[source]";
     $enquiry="$row[enquiry]";
+    $other_source="$row[other_source]";
+    $other_enquiry="$row[other_enquiry]";
     $status="$row[status]";
     $follow_update="$row[follow_update]";
     $remark="$row[remark]";
@@ -414,7 +416,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                      </div>
                        <script language='javascript'>
-                        window.location = 'customer.php';
+                        window.location = 'index.php';
                     </script>
                      ";
     }
@@ -469,25 +471,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="from-field">
                     <div class="inline-fields">
-                        <div class="field">
-                            <label for="enquiry">Enquiry:</label>
-                            <select id="enquiry" name="enquiry">
-                                <option value="Book" <?php echo ($enquiry == 'Book') ? 'selected' : ''; ?>>Book</option>
-                                <option value="Book Chapter" <?php echo ($enquiry == 'Book Chapter') ? 'selected' : ''; ?>>Book Chapter</option>
-                                <option value="Edit Book" <?php echo ($enquiry == 'Edit Book') ? 'selected' : ''; ?>>Edit Book</option>
-                            </select>
-                        </div>
-                        <div class="field">
-    <label for="source">Lead Source:</label>
-    <select id="source" name="source" onchange="toggleReferenceInput()">
-        <option value="Google" <?php echo ($source == 'Google') ? 'selected' : ''; ?>>Google</option>
-        <option value="Justdial" <?php echo ($source == 'Justdial') ? 'selected' : ''; ?>>Justdial</option>
-        <option value="Indiamart" <?php echo ($source == 'Indiamart') ? 'selected' : ''; ?>>Indiamart</option>
-        <option value="Website" <?php echo ($source == 'Website') ? 'selected' : ''; ?>>Website</option>
-        <option value="Reference" <?php echo ($source == 'Reference') ? 'selected' : ''; ?>>Reference</option>
-        <option value="Ads" <?php echo ($source == 'Ads') ? 'selected' : ''; ?>>Ads</option>
-    </select>
-</div>
+                    <div class="field">
+            <label for="enquiry">Enquiry:</label>
+            <select id="enquiry" name="enquiry" onchange="toggleEnquiryOther()">
+                <option value="Book" <?php echo ($enquiry == 'Book') ? 'selected' : ''; ?>>Book</option>
+                <option value="Book Chapter" <?php echo ($enquiry == 'Book Chapter') ? 'selected' : ''; ?>>Book Chapter</option>
+                <option value="Edit Book" <?php echo ($enquiry == 'Edit Book') ? 'selected' : ''; ?>>Edit Book</option>
+                <option value="Other" <?php echo ($enquiry == 'Other') ? 'selected' : ''; ?>>Other</option>
+            </select>
+        </div>
+
+        <!-- Enquiry Other Field -->
+        <div class="field" id="enquiry-other-field" style="display: none;">
+            <label for="other-enquiry">Please specify:</label>
+            <input type="text" id="other_enquiry" name="other_enquiry" placeholder="Enter Enquiry Details" value="<?php print $other_enquiry ?>">
+        </div>
+
+        <!-- Source Field -->
+        <div class="field">
+            <label for="source">Lead Source:</label>
+            <select id="source" name="source" onchange="toggleSourceOther()">
+                <option value="Google" <?php echo ($source == 'Google') ? 'selected' : ''; ?>>Google</option>
+                <option value="Justdial" <?php echo ($source == 'Justdial') ? 'selected' : ''; ?>>Justdial</option>
+                <option value="Indiamart" <?php echo ($source == 'Indiamart') ? 'selected' : ''; ?>>Indiamart</option>
+                <option value="Website" <?php echo ($source == 'Website') ? 'selected' : ''; ?>>Website</option>
+                <option value="Reference" <?php echo ($source == 'Reference') ? 'selected' : ''; ?>>Reference</option>
+                <option value="Ads" <?php echo ($source == 'Ads') ? 'selected' : ''; ?>>Ads</option>
+                <option value="Other" <?php echo ($source == 'Other') ? 'selected' : ''; ?>>Other</option>
+            </select>
+        </div>
+
+        <!-- Source Other Field -->
+        <div class="field" id="source-other-field" style="display: none;">
+            <label for="other-source">Please specify:</label>
+            <input type="text" id="other_source" name="other_source" placeholder="Enter Source Details" value="<?php print $other_source ?>">
+        </div>
 
 <!-- Hidden input field for Reference -->
 <div class="field" id="reference-field" style="display: none;">
@@ -715,8 +733,31 @@ function addPaymentSection() {
 
 </script>
 
+
 <script>
     // Function to show/hide the Reference input field based on the selected source
+    function toggleEnquiryOther() {
+    var enquiryValue = document.getElementById('enquiry').value;
+    var enquiryOtherField = document.getElementById('enquiry-other-field');
+    
+    if (enquiryValue === 'Other') {
+        enquiryOtherField.style.display = 'block'; // Show the "Other" enquiry field
+    } else {
+        enquiryOtherField.style.display = 'none'; // Hide the "Other" enquiry field
+    }
+}
+
+// Function to show or hide the "Other" source field
+function toggleSourceOther() {
+    var sourceValue = document.getElementById('source').value;
+    var sourceOtherField = document.getElementById('source-other-field');
+    
+    if (sourceValue === 'Other') {
+        sourceOtherField.style.display = 'block'; // Show the "Other" source field
+    } else {
+        sourceOtherField.style.display = 'none'; // Hide the "Other" source field
+    }
+}
     function toggleReferenceInput() {
         var source = document.getElementById("source").value;
         var referenceField = document.getElementById("reference-field");
@@ -731,6 +772,8 @@ function addPaymentSection() {
     // Call the function on page load in case the value is already set to "Reference"
     window.onload = function() {
         toggleReferenceInput();
+        toggleEnquiryOther();
+        toggleSourceOther();
     };
 </script>
 
