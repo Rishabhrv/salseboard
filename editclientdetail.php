@@ -8,6 +8,22 @@ $todo=  mysqli_real_escape_string($con,$_GET['id']);
 <?php 
 print"
 <style>
+.task-manager {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Full width of its container */
+  height: 100vh; /* Full height of the viewport */
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 
+    0 0.3px 2.2px rgba(0, 0, 0, 0.011), 
+    0 0.7px 5.3px rgba(0, 0, 0, 0.016), 
+    0 1.3px 10px rgba(0, 0, 0, 0.02), 
+    0 2.2px 17.9px rgba(0, 0, 0, 0.024), 
+    0 4.2px 33.4px rgba(0, 0, 0, 0.029), 
+    0 10px 80px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
 
         @keyframes fadeIn {
             from {
@@ -105,6 +121,188 @@ print"
         max-height: 400px; /* Set the height of the scrollable area */
         overflow-y: auto; /* Enable vertical scroll when content overflows */
     }
+        
+/* Style the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown content when clicked */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* Container for the merit boxes */
+.merit-box {
+  display: flex;  /* Use flexbox for the layout */
+  flex-wrap: wrap;  /* Allows the items to wrap onto the next line if they don't fit */
+  gap: 10px;  /* Adds spacing between the boxes */
+  justify-content: flex-start;  /* Align the items to the left */
+  padding: 0px;
+  margin-bottom:20px;
+}
+
+/* Each box */
+
+  .merit-box .boxx-lead {
+font-size:13px;
+color:rgb(83, 83, 83);
+  border: 1px solid #f9f9f9 ;
+  padding: 0px 0px 10px 0px;  /* Adds padding inside the box */
+  width: calc(16.666% - 10px);  /* Each box takes up 1/6 of the container */
+  text-align: center;  /* Centers the text inside the box */
+  background-color: #f9f9f9;  /* Light background for better readability */
+  border-radius: 8px;  /* Rounds the corners of the boxes */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Adds a subtle shadow around the boxes */
+}
+ .merit-box .boxx-lead .lead-no{
+font-size:28px;
+
+padding:0px;
+margin:10px 0 10px 0;
+}
+.merit-box .boxx-lead i{
+font-size:11px;
+padding-bottom:10px;
+}
+
+.tasks-wrapper{
+padding-left:100px;
+
+
+}
+.customer_button1 {
+  position: fixed;  /* Fixes the position relative to the viewport */
+  bottom: 20px;  /* Adjusts the space from the bottom of the page */
+  right: 20px;  /* Adjusts the space from the right side of the page */
+  z-index: 1000;  /* Ensures the button is above other content */
+}
+ 
+/* General Style for the filter options */
+.filter-options {
+    display: flex;
+    flex-wrap: wrap; /* Allow fields to wrap to the next line if necessary */
+    gap: 20px;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Style for each filter field */
+.filter-field {
+    flex: 1 0 20%; /* Ensure each filter field takes up approximately 30% of the container width */
+    max-width: 20%; /* Max width of 30% ensures 3 fields per row */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label styles */
+.filter-field label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 5px;
+    white-space: nowrap; /* Prevent labels from breaking into multiple lines */
+}
+.search-buttton{
+margin:25px;
+}
+/* Input styles */
+.filter-field input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%; /* Ensure input takes full width of the container */
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+/* Button styles */
+.filter-field button {
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    width: 100%; /* Make button take full width of the field */
+}
+
+.filter-field button:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .filter-options {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .filter-field {
+        flex: 1 0 100%; /* Make fields stack vertically on smaller screens */
+        max-width: 100%;
+    }
+}
+ th {
+    cursor: pointer;
+    text-align:left;
+  }
+
+.right-bar {
+  width: 230px;
+  border-left: 1px solid #e3e7f7;
+  display: flex;
+  flex-direction: column;
+}
+  .task-box {
+  position: relative;
+  border-radius: 12px;
+  width: 100%;
+  margin: 15px 0;
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px 0px #ebebeb;
+}
+  .right-content {
+  padding: 10px 15px;
+  overflow-y: auto;
+  flex: 1;
+}
+
 </style>
 
 ";
@@ -183,7 +381,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             // Now insert or update the values in the dynamically created columns
-            $update_follow_up_query = mysqli_query($con, "UPDATE customer_detail SET `$column_name`='$follow_update', `$remark_column`='$remark' WHERE id='$todo'");
+            $update_follow_up_query = mysqli_query($con, "UPDATE customer_detail SET `$column_name`='$follow_update',last_followupdate='$follow_update', `$remark_column`='$remark' WHERE id='$todo'");
         }
          // Handle the dynamic payment sections (if any)
     foreach ($payment_dates as $index => $payment_date) {
@@ -453,7 +651,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-
+  <?php include "include/leftsider.php" ?>
 
 
 </div>

@@ -1,153 +1,94 @@
-<?php 
 
-print"
-
-<style>
-/* Popup container */
-.popup {
-  display: none;  /* Hidden by default */
-  position: fixed;
-  buttom: 0;
-  right: 0;  /* This will place the popup on the right side */
-  width: 250px;  /* Adjust the width as needed */
-  height: 80%;  /* Full height */
-  z-index: 9999;  /* Ensure it appears on top */
- 
-}
-
-/* Popup content */
-.popup-content {
-
-
-  background-color: rgb(245, 245, 245);
-  padding: 20px;
-  border-radius: 8px;
-  height: 100%;
-  width: 100%;
-  overflow-y: auto; /* Allow scrolling for the content */
-  box-sizing: border-box;
-}
-
-/* Close button */
-.close-btn {
-  font-size: 30px;
-  color: #aaa;
-  float: right;
-  cursor: pointer;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-}
-
-/* Popup body styling */
-.popup-body {
-  margin-top: 10px;
-}
-
-.popup-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.counter {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.popup-title {
-  margin-top: 20px;
-}
-
-.popup-content {
-  margin-top: 20px;
-}
-
-/* Task box styles */
-.task-box {
-  margin: 5px 0;
-  padding: 20px;
-  border-radius: 5px;
-}
-
-.task-box.yellow {
-  background-color:var(--box-color);
-}
-
-.task-box.green {
-  background-color: var(--box-color-4);
-}
-
-.task-box.blue {
-  background-color: var(--box-color-2);
-}
-
-.task-details .time {
-  font-size: 14px;
-  color: gray;
-}
-
-.task-members {
-  display: flex;
-  align-items: center;
-}
-
-.task-members i {
-  margin-right: 5px;
-}
-
-.task-members div {
-  font-size: 15px;
-  color: gray;
-}
-
-</style>
-";
-?>
-<!-- The Modal -->
-<div id="schedulePopup" class="popup">
-  <div class="popup-content">
-    <span class="close-btn">&times;</span>
-    <div class="popup-body">
+<div class="right-bar">
+    <div class="top-part">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-users">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
      
-      <div class="popup-title">Today Schedule</div>
-      <div class="popup-content">
-        <div class="task-box yellow">
-          <div class="task-details">
-            <div class="time">08:00 - 09:00 AM</div>
-            <div class="task-name">Client Name</div>
+    </div>
+    <h3 class="" style="margin-left:20px;">Today Schedule</h3>
+    <div class="right-content">
+    <?php
+                         $q="SELECT * FROM  customer_detail ORDER BY id DESC";
+
+                          $color="yellow";
+                          $count=1;
+                         $r123 = mysqli_query($con,$q);
+                        while ($ro = mysqli_fetch_array($r123)) {
+                          $id="$ro[id]";
+
+                          $query = "SELECT * FROM customer_detail WHERE id='$id'";
+                          $result = mysqli_query($con, $query);
+                          if ($result) {
+                              $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                          } else {
+                              echo "Error in query: " . mysqli_error($con);
+                          }
+                          // Iterate over the existing follow-up data if present
+                          $values=0;
+                          $lastfollowup=0;
+                          $follow_up_index = 0; // Start index for follow-ups
+                          foreach ($row as $key => $value) {
+                           
+                              if (strpos($key, 'follow_update_') === 0 && !is_null($value)) {
+                                  // Extract the index from the column name
+                                  $lastfollowup=$values;
+                                  $follow_up_index = str_replace('follow_update_', '', $key);
+                                  $values=$value;
+                              }
+                            }
+                          $customer_name="$ro[customer_name]";
+                          $email="$ro[email]";
+                          $number="$ro[number]";
+                          $enquiry="$ro[enquiry]";
+                          $source="$ro[source]";
+                          $status="$ro[status]";
+                          $today_date = date('Y-m-d');
+                       
+                          if($status=="On Going" && $values == $today_date){
+                            if($count%2==0){
+                              $color="yellow";
+                            }
+                            else if($count%3==0){
+                              $color="blue";
+                            }
+                            else{
+                              $color="green";
+                            }
+                            print"
+                            
+                               <div class='task-box $color'>
+          <div class='task-details'>
+            <div class='time ' style='display:inline;'>Today</div>    
+            <div class='dropdown' style='margin-left:120px;'>
+                <i class='fa-solid fa-ellipsis-vertical' style='padding:5px;cursor: pointer;' onclick='toggleDropdown(event)'></i>
+                <div class='dropdown-content'>
+                  <a href='#' onclick=''>View</a>
+                  <a href='editclientdetail.php?id=$id' onclick='openPopup()'>Edit</a>
+
+                </div>
+              </div>
+            <div class='task-name' style='font-size:12px;'>$customer_name</div>
           </div>
-          <div class="more-info"></div>
-          <div class="task-members">
-            <i class="fa-solid fa-phone" style="display: inline; margin-right: 5px;font-size:14px;"></i>
-            <div style="display: inline; margin: 0px;color:gray; font-size:15px">7821921978</div>
+          <div class='more-info'></div>
+          <div class='task-members'>
+            <i class='fa-solid fa-phone' style='display: inline; margin-right: 5px;font-size:14px;'></i>
+            <div style='display: inline; margin: 0px;color:gray; font-size:15px'> $number</div>
           </div>
-        </div>
-        <div class="task-box green">
-          <div class="task-details">
-            <div class="time">08:00 - 09:00 AM</div>
-            <div class="task-name">Client Name</div>
-          </div>
-          <div class="more-info"></div>
-          <div class="task-members">
-            <i class="fa-solid fa-phone" style="display: inline; margin-right: 5px;font-size:14px;"></i>
-            <div style="display: inline; margin: 0px;color:gray; font-size:15px">7821921978</div>
-          </div>
-        </div>
-        <div class="task-box blue">
-          <div class="task-details">
-            <div class="time">08:00 - 09:00 AM</div>
-            <div class="task-name">Client Name</div>
-          </div>
-          <div class="more-info"></div>
-          <div class="task-members">
-            <i class="fa-solid fa-phone" style="display: inline; margin-right: 5px;font-size:14px;"></i>
-            <div style="display: inline; margin: 0px;color:gray; font-size:15px">7821921978</div>
-          </div>
-        </div>
-      </div>
+        </div>";
+        $count++;
+                          }};?>
+
+  
+     
+    
     </div>
   </div>
-</div>
+
+
+
+

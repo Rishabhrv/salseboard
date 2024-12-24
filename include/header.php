@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<div class="task-manager">
+<div class="task-manager" >
   <div class="left-bar">
     <div class="upper-part">
       <div class="actions">
