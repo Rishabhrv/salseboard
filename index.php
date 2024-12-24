@@ -574,6 +574,10 @@ while ($ro = mysqli_fetch_array($r123)) {
       <button class="button-86" onclick="openModal()"> +</button>
     </div>
 
+    <!-- <div class="customer_button1">
+      <button class="button-86" onclick="openModal()"> +</button>
+    </div> -->
+
 
 
 
