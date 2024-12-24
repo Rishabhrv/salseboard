@@ -414,6 +414,8 @@ $r123 = mysqli_query($con,$q);
 while ($ro = mysqli_fetch_array($r123)) {
  $id="$ro[id]";
  $status="$ro[status]";
+ $today_date = date('Y-m-d');
+
 
  $query = "SELECT * FROM customer_detail WHERE id='$id'";
  $result = mysqli_query($con, $query);
@@ -440,7 +442,7 @@ while ($ro = mysqli_fetch_array($r123)) {
   
     
    }
-   if($values!=NULL && $status=="On Going"){
+   if($values!=NULL && $status=="On Going" && $values == $today_date){
     $followupcount++;
    }
   
@@ -573,10 +575,6 @@ while ($ro = mysqli_fetch_array($r123)) {
     <div class="customer_button1">
       <button class="button-86" onclick="openModal()"> +</button>
     </div>
-
-    <!-- <div class="customer_button1">
-      <button class="button-86" onclick="openModal()"> +</button>
-    </div> -->
 
 
 

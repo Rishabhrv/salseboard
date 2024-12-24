@@ -347,17 +347,98 @@ margin:25px;
   overflow-y: auto;
   flex: 1;
 }
-  .page-content{
+  .page-content1{
+  padding-left:20px;
+  padding-right:20px;
   overflow-y: auto;
 
 }
+
+h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #001A6E;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #001A6E;
+            color: white;
+        }
+
+        td {
+            background-color: #f8f9fa;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #e2e6ea;
+        }
+
+        .table-container {
+            margin-bottom: 30px;
+        }
+
+        .table-container h3 {
+            font-size: 1.8em;
+            color: #001A6E;
+            margin-bottom: 10px;
+        }
+
+        .table-container .fa {
+            margin-right: 10px;
+        }
+
+        .btn {
+            background-color: #001A6E;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .table-container td, .table-container th {
+            font-size: 1.1em;
+        }
+
+        /* Custom styles for different sections */
+        .table-container {
+            margin-bottom: 30px;
+        }
+
+        .table-container td {
+            font-weight: 500;
+        }
 
 </style>
 
 ";
 
 ?>
-<div class="page-content">
+<div class="page-content1">
 <?php
 // Assuming your database connection is already established
 $query = "SELECT * FROM customer_detail WHERE id='$todo'";
@@ -377,48 +458,59 @@ while($row = mysqli_fetch_array($result)) {
     $remark = $row['remark'];
     $calling_date = $row['calling_date'];
     $payment = $row['payment'];
+    $allot_to=$row['allot_to'];
     $reference = $row['reference'];
 }
 ?>
 
 <!-- HTML Table to Display Data -->
-<table  border="1">
-    <tbody >
-     
-        <tr>
-            <td><b>Customer Name</b></td>
-            <td colspan="3"><?php echo $customer_name; ?></td>
-        </tr>
-        <tr>
-            <td><b>Email</b></td>
-            <td><?php echo $email; ?></td>
-            <td><b>Phone Number</b></td>
-            <td><?php echo $number; ?></td>
-        </tr>
-        <tr>
-            <td><b>Status</b></td>
-            <td><?php echo $status; ?></td>
-            <td><b>Enquiry Date</b></td>
-            <td><?php echo $enquiry_date; ?></td>
-        </tr>
-        <tr>
-            <td><b>Source</b></td>
-            <td><?php echo $source; ?></td>
-            <td><b>Enquiry</b></td>
-            <td><?php echo $enquiry; ?></td>
-        </tr>
-        </tbody>
+<div class="table-container">
+        <h1>Client Detail</h1>
+        <button class="btn" onclick="window.location.href='index.php'"><i class="fa fa-arrow-left"></i> Back to Customers</button>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td><b>Customer Name</b></td>
+                    <td colspan="3"><?php echo $customer_name; ?></td>
+                </tr>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td><?php echo $email; ?></td>
+                    <td><b>Phone Number</b></td>
+                    <td><?php echo $number; ?></td>
+                </tr>
+                <tr>
+                    <td><b>Status</b></td>
+                    <td><?php echo $status; ?></td>
+                    <td><b>Enquiry Date</b></td>
+                    <td><?php echo $enquiry_date; ?></td>
+                </tr>
+                <tr>
+                    <td><b>Source</b></td>
+                    <td><?php echo $source; ?></td>
+                    <td><b>Enquiry</b></td>
+                    <td><?php echo $enquiry; ?></td>
+                </tr>
+                <tr>
+                    <td><b>Payment</b></td>
+                    <td><?php echo $payment; ?></td>
+                    <td><b>Assign To</b></td>
+                    <td><?php echo $allot_to; ?></td>
+                </tr>
+            </tbody>
         </table>
 
         <h3>Follow Up</h3>
-        <table  border="1">
-    <tbody >
-        <tr>
-            <th><b>Follow-up Date</b></th>
-            <th><b>Remarks</b></th>
-        </tr>
-     
-        <?php
+        <table>
+            <thead>
+                <tr>
+                    <th><b>Follow-up Date</b></th>
+                    <th><b>Remarks</b></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
     $query = "SELECT * FROM customer_detail WHERE id='$todo'";
     $result = mysqli_query($con, $query);
     if ($result) {
@@ -437,68 +529,47 @@ while($row = mysqli_fetch_array($result)) {
             $remark_key = 'remark_' . $follow_up_index;
             $remark_value = isset($row[$remark_key]) ? $row[$remark_key] : '';
 
-            // Add form fields for the follow-up date and remark
-            print "
-       
-             <tr>
-            <td>$value</td>
-            <td>$remark_value </td>
-        </tr>
-            ";
-        }
-    }
-    ?>
-       
-     
-        <tr>
-        
-        </tr>
-    </tbody>
-</table>
-
-<h2>Payment </h2>
-<table  border="1">
-    <tbody >
-        <tr>
-        <th><b>payment Date</b></th>
-        <th><b>Payment Status</b></th>
-        </tr>
-        <?php
-    // Fetch customer details
-    $query = "SELECT * FROM customer_detail WHERE id='$todo'";
-    $result = mysqli_query($con, $query);
-    if ($result) {
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    } else {
-        echo "Error in query: " . mysqli_error($con);
-    }
-    
-    // Iterate over the existing payment data if present
-    $payment_index = 0; // Start index for payments
-    foreach ($row as $key => $value) {
-        if (strpos($key, 'payment_date_') === 0 && !is_null($value)) {
-            // Extract the index from the column name
-            $payment_index = str_replace('payment_date_', '', $key);
-
-            // Get the corresponding payment amount field
-            $payment_key = 'payment_amount_' . $payment_index;
-            $payment_value = isset($row[$payment_key]) ? $row[$payment_key] : '';
-
-            // Add form fields for the payment amount and date
-            print"
-          
-               <tr>
-           
-            <td>$value</td>
-          
-            <td>$payment_value</td>
-        </tr>";
-        }
-    }
-    ?>
-        </tbody>
+                        echo "
+                        <tr>
+                            <td>$value</td>
+                            <td>$remark_value</td>
+                        </tr>";
+                    }
+                  }
+                
+                ?>
+            </tbody>
         </table>
+
+        <h3>Payment</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th><b>Payment Date</b></th>
+                    <th><b>Payment Status</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $payment_index = 0;
+                foreach ($row as $key => $value) {
+                    if (strpos($key, 'payment_date_') === 0 && !is_null($value)) {
+                        $payment_index = str_replace('payment_date_', '', $key);
+                        $payment_key = 'payment_amount_' . $payment_index;
+                        $payment_value = isset($row[$payment_key]) ? $row[$payment_key] : '';
+
+                        echo "
+                        <tr>
+                            <td>$value</td>
+                            <td>$payment_value</td>
+                        </tr>";
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+
+    </div>
 </div>
 
-<?php include "include/leftsider.php" ?>
 <?php require "include/footer.php"?>

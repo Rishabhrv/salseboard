@@ -67,7 +67,7 @@
             <div class='dropdown' style='margin-left:120px;'>
                 <i class='fa-solid fa-ellipsis-vertical' style='padding:5px;cursor: pointer;' onclick='toggleDropdown(event)'></i>
                 <div class='dropdown-content'>
-                  <a href='#' onclick=''>View</a>
+                  <a href='viewclientdetail.php?id=$id' onclick=''>View</a>
                   <a href='editclientdetail.php?id=$id' onclick='openPopup()'>Edit</a>
 
                 </div>

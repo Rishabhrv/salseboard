@@ -432,7 +432,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div id="editLeadModal">
     <div class="modal-content">
-        <a href="customer.php" style="text-decoration:none;"><i class="fa-solid fa-angles-left" style="color: black;"></i><span class="close" onclick="closePopup()"> Back</span> </a>
+        <a href="index.php" style="text-decoration:none;"><i class="fa-solid fa-angles-left" style="color: black;"></i><span class="close" onclick="closePopup()"> Back</span> </a>
         <h2>Edit Lead</h2>
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
